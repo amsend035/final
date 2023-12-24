@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameplay</title>
+    <link rel="stylesheet" href="Game/Game.css">
+    <link rel="website icon" type="png/jpg" href="https://th.bing.com/th/id/OIP.uY33Ap-e7eCHZItB643j4gHaHa?rs=1&pid=ImgDetMain">
+</head>
+<body>
+    <div class="navbar">
+        <div class="dropdown">
+                <button class="home">Home</button>
+                <div class="dropdown-content">
+                    <a href="Home.html">Home</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="country">Country</button>
+                <div class="dropdown-content">
+                    <a href="Indonesia.html">Indonesia</a>
+                    <a href="Malaysia.html">Malaysia</a>
+            
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="similar">Similarities</button>
+                <div class="dropdown-content">
+                    <a href="Cuisine.html">Cuisine</a>
+                    <a href="TraditionalOutfit.html">Traditional Outfit</a>
+                    <a href="Weather.html">Weather</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="game">Game</button>
+                <div class="dropdown-content">
+                    <a href="Introduction.html">Introduction</a>
+                    <a href="Gameplay.html">Gameplay</a>
+                </div>
+            </div> 
+        </div>
+    </div>
+        
+    <div class="box">
+        <div class="turn" id="turn">It is <span class="extra">Player 1's</span> turn.</div>
+        <div class="comp">Player 2</div>
+        <div class="container">
+            <div class="board">
+                <div class="store" id="playerstore"><div class="score">0</div></div>
+                <div class="allpit">
+                    <div class="pitbox">
+                        <div class="pit" id="comp0" onclick="move('B',7)"><div class="num">7</div></div>
+                        <div class="pit" id="comp1" onclick="move('B',8)"><div class="num">7</div></div>
+                        <div class="pit" id="comp2" onclick="move('B',9)"><div class="num">7</div></div>
+                        <div class="pit" id="comp3" onclick="move('B',10)"><div class="num">7</div></div>
+                        <div class="pit" id="comp4" onclick="move('B',11)"><div class="num">7</div></div>
+                        <div class="pit" id="comp5" onclick="move('B',12)"><div class="num">7</div></div>
+                        <div class="pit" id="comp6" onclick="move('B',13)"><div class="num">7</div></div>
+                    </div>
+                    <div class="pitbox">
+                        <div class="pit" id="player6" onclick="move('A',6)"><div class="num">7</div></div>
+                        <div class="pit" id="player5" onclick="move('A',5)"><div class="num">7</div></div>
+                        <div class="pit" id="player4" onclick="move('A',4)"><div class="num">7</div></div>
+                        <div class="pit" id="player3" onclick="move('A',3)"><div class="num">7</div></div>
+                        <div class="pit" id="player2" onclick="move('A',2)"><div class="num">7</div></div>
+                        <div class="pit" id="player1" onclick="move('A',1)"><div class="num">7</div></div>
+                        <div class="pit" id="player0" onclick="move('A',0)"><div class="num">7</div></div>
+                    </div>
+                </div>
+                <div class="store" id="compstore"><div class="score">0</div></div>
+            </div>
+        </div>
+        <div class="player">Player 1</div>
+        <div class="winner" id="winner"></div>
+        <button class="resetbtn" onclick="reset()">Reset</div>
+    </div>
+
+    <script type="text/javascript">
+        //A->player1; B->player2
+        var pits=[7,7,7,7,7,7,7,7,7,7,7,7,7,7];
+        var stores=[0,0];
+        var current='A';
+        function reset(){
+            stores[0]=stores[1]=0;
+            for(let i=0;i<14;++i){
+                pits[i]=7;
+            }
+            display();
+        }
+        function game(player){
+            var tmp="";
+            if(sum_array(pits)==0)winner();
+            else msg(player);
+        }
+        function winner(){
+            const score=stores;
+            localStorage.setItem('score',JSON.stringify(score));
+            location.replace("Winner.html");
+        }
+        function move(player,index){
+            if(player!=current){window.alert("Please Wait for your turn!");return;}
+            var seeds=pits[index];
+            if(seeds==0){window.alert("Invalid move. Please choose another pit with seeds.");return;}
+            current=disloop(current,index);
+            console.log(current+' '+checkempty(current));
+            if(checkempty(current)==1){
+                if(current=='A')current='B';
+                else current='A';
+            }
+            if(sum_array(pits)==0){winner();return;}
+            msg(current);
+        }
+        function disloop(player,index){
+            var end=distribute(player,index);
+            const endindex=end[1];
+            if(endTurn(end,player)){
+                if((pits[endindex]==1) && (pits[13-endindex]>0))capture(endindex,player);
+                return player=='A'?'B':'A';
+            }
+            else if(!end[0])return disloop(player,endindex);
+            else return player;
+        }
+        function distribute(player,index){
+            var flag=0; //1 if the last seed is dropped in the store
+            var seeds=pits[index];
+            pits[index]=0;
+            for(let i=0;i<seeds;i++){
+                index=(index+1)%14;
+                switch(player){
+                    case 'A':
+                        if(index==7){
+                            if(i+1==seeds)flag=1;
+                            stores[0]++;
+                            if(i+1<seeds)pits[index]++;
+                            i++;
+                            continue;
+                        }
+                        break;
+                    case 'B':
+                        if(index==0){
+                            if(i+1==seeds)flag=1;
+                            stores[1]++;
+                            if(i+1<seeds)pits[index]++;
+                            i++;
+                            continue;
+                        }
+                        break;
+                }
+                pits[index]++;
+            }
+            display();
+            return [flag,index];
+        }
+        function endTurn(end,player){
+            return (checkempty(player)==1||((end[0]==0) && (pits[end[1]]==1)));
+        }
+        function checkempty(player){
+            var flag=0;
+            switch(player){
+                case 'A':
+                    flag=(sum_array(pits.slice(0,7))==0)?1:0;
+                    break;
+                case 'B':
+                    flag=(sum_array(pits.slice(7,14))==0)?1:0;
+                    break;
+            }
+            return flag;
+        }
+        function capture(endindex,player){
+            switch(player){
+                case 'A':
+                    if(endindex<=6){
+                        stores[0]+=pits[endindex]+pits[13-endindex];
+                        pits[endindex]=pits[13-endindex]=0;
+                        display();
+                    }
+                    break;
+                case 'B':
+                    if(endindex>=7){
+                        stores[1]+=pits[endindex]+pits[13-endindex];
+                        pits[endindex]=pits[13-endindex]=0;
+                        display();
+                    }
+                    break;
+            }
+        }
+        function sum_array(arr){
+            var sum=0;
+            for(let i=0;i<arr.length;++i)sum+=arr[i];
+            return sum;
+        }
+        function msg(player){
+            var cout="";
+            if(player=='A')cout+="Player 1";
+            else cout+="Player 2";
+            document.getElementById("turn").innerHTML="It is <span class='extra'>"+cout+"'s</span> turn.";
+        }
+        function display(){
+            document.getElementById("playerstore").querySelector('.score').innerText=stores[0];
+            document.getElementById("compstore").querySelector('.score').innerText=stores[1];
+            for(let i=0;i<7;++i){
+                document.getElementById("player"+i).querySelector('.num').innerText=pits[i];
+                document.getElementById("comp"+i).querySelector('.num').innerText=pits[7+i];
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Win</title>
+    <link rel="website icon" type="png/jpg" href="https://th.bing.com/th/id/R.25f9fc9da597fbdeb1274fce52292c81?rik=T2YMgWC%2fp6TZ4Q&pid=ImgRaw&r=0">
+
+    <style type="text/css">
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .navbar { 
+            position: fixed;
+            z-index: 99;
+            margin: 0; 
+            padding: 0; 
+            list-style: none; 
+            display: flex;
+            width: 100vw;
+            text-align: center;
+            background-color: #333;
+            top: 0;
+            left: 0;
+        }
+
+        .navbar a { 
+            color: white;
+            text-decoration: none; 
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: inline-block;
+            padding: 15px 20px;
+            position: relative;
+            font-size: 23.5px;
+            text-align: center;
+        }
+
+        .navbar a:after {    
+            background: none repeat scroll 0 0 transparent;
+            bottom: 0;
+            content: "";
+            display: block;
+            height: 4px;
+            left: 50%;
+            position: absolute;
+            background: black;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            width: 0;
+        }
+
+        .navbar a:hover:after{
+            width: 100%;
+            left: 0;
+            background-color: red;
+        }
+
+        .dropdown{
+            overflow: hidden;
+            width: 25%;
+        }
+
+        .home, .country, .similar, .game{
+            font-size: 36px;  
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            text-transform: uppercase;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            width: 25%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video video {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            object-fit: contain;
+        }
+
+        .video .title {
+            position: absolute;
+            width:  100%;
+            height: 100%;
+            margin-top: 25vh;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            mix-blend-mode: screen;
+            text-align: center;
+            z-index: 999;
+        }
+
+        h1 {
+            font-size: 4em;
+        }
+
+        h2 {
+            font-size: 2.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="dropdown">
+                <button class="home">Home</button>
+                <div class="dropdown-content">
+                    <a href="Home.html">Home</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="country">Country</button>
+                <div class="dropdown-content">
+                    <a href="Indonesia.html">Indonesia</a>
+                    <a href="Malaysia.html">Malaysia</a>
+            
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="similar">Similarities</button>
+                <div class="dropdown-content">
+                    <a href="Cuisine.html">Cuisine</a>
+                    <a href="TraditionalOutfit.html">Traditional Outfit</a>
+                    <a href="Weather.html">Weather</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="game">Game</button>
+                <div class="dropdown-content">
+                    <a href="Introduction.html">Introduction</a>
+                    <a href="Gameplay.html">Gameplay</a>
+                </div>
+            </div> 
+        </div>
+    </div>
+        
+    <div class="video">
+        <video src="Game/video (1080p).mp4" autoplay loop muted></video>
+        <div class="title">
+            <div id="win"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const stores=JSON.parse(localStorage.getItem('score'));
+        var msg="";
+        if(stores[0]>stores[1])msg+="<h1>Player 1 win! Congratulations!</h1>";
+        else if(stores[0]<stores[1])msg+="<h1>Player 2 win! Congratulations!</h1>";
+        else msg+="<h1>It's a draw!</h1>";
+        msg+="<br><h2>Player 1's score: "+stores[0]+", Player 2's score: "+stores[1]+".</h2>";
+        document.getElementById("win").innerHTML=msg;
+    </script>
+</body>
+</html>

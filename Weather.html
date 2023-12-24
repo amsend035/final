@@ -1,0 +1,111 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather</title>
+        <link rel="stylesheet" href="Similarity/weather-style.css">
+        <link rel="website icon" type="png/jpg" href="https://cdn.pixabay.com/photo/2018/12/22/10/51/weather-3889464_1280.png">
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="dropdown">
+                <button class="home">Home</button>
+                <div class="dropdown-content">
+                    <a href="Home.html">Home</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="country">Country</button>
+                <div class="dropdown-content">
+                    <a href="Indonesia.html">Indonesia</a>
+                    <a href="Malaysia.html">Malaysia</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="similar">Similarities</button>
+                <div class="dropdown-content">
+                    <a href="Cuisine.html">Cuisine</a>
+                    <a href="TraditionalOutfit.html">Traditional Outfit</a>
+                    <a href="Weather.html">Weather</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="game">Game</button>
+                <div class="dropdown-content">
+                    <a href="Introduction.html">Introduction</a>
+                    <a href="Gameplay.html">Gameplay</a>
+                </div>
+            </div> 
+        </div>
+
+        <figure>
+            <img src="https://th.bing.com/th/id/R.7efae7f6dce13596b70641cc2b274431?rik=ipfFyBDpX20ecQ&pid=ImgRaw&r=0">
+            <figcaption>
+                <div class="caption-title">Tropical</div>
+                <div class="caption-full">
+                    <ul>
+                        <li>
+                            Indonesia and Malaysia share remarkable similarities in their weather patterns, both being situated in the equatorial region, thereby experiencing a tropical climate.
+                            The equatorial location ensures consistent temperatures throughout the year, with minimal seasonal variations.
+                            <br>
+                            <img src="Similarity/malayandindo.jpg">
+                        </li>
+                        <br>
+                        <li>
+                            Both countries encounter high temperatures and humidity levels, creating a warm and tropical ambiance.
+                            The presence of dense rainforests further contributes to the perpetually green landscapes in both nations.
+                            The tropical climate also results in a distinct wet and dry season, characterized by heavy rainfall during the monsoon period.
+                            <br>
+                            <br>
+                            <div class="rain">
+                                <img src="Similarity/heavyrainmalay.jpg=s600" style="height: 50%; width: 50%;">
+                                <img src="Similarity/indofllod.jpg" style="height: 50%; width: 50%; float: right;">
+                                <br>
+                                <div style="background-color: black; float: left;">Heavy Rain in Malaysia</div> <div style="background-color: black; float: right;">Flood in Indonesia.</div>
+                            </div>
+                        </li>
+                        <br>
+                        <br>
+                        <li>
+                            These shared climatic features make Indonesia and Malaysia prone to similar weather phenomena, such as tropical storms and cyclones, while fostering lush biodiversity in their ecosystems.
+                            The prevalence of such a climate not only shapes the physical geography of the two countries but also influences the lifestyles and cultures of their inhabitants.
+                        </li> 
+                        <br>
+                        <li>
+                            Unlike Indonesia and Malaysia, Taiwan undergoes more noticeable temperature variations throughout the year.
+                            Summers are hot and humid, with the possibility of typhoons, while winters are milder and cooler.
+                            Spring and autumn bring more temperate conditions, making Taiwan distinct from the perpetual warmth found in the equatorial climates of Indonesia and Malaysia.
+                            <div class="taiwanweather">
+                                <img src="Similarity/typoontaiwan.webp" style="height: 50%; width: 50%;">
+                                <br>
+                                <div style="background-color: black; float: left;">Typhoons Koinu static image of Taiwan</div>
+                        </div>    
+                        </li> 
+                    </ul>
+                </div>
+            </figcaption>
+        </figure>
+
+        <script type="text/javascript">
+            const figure = document.querySelectorAll('figure');
+            const caption = document.querySelectorAll('figcaption');
+            const fullCaption = document.querySelectorAll('.caption-full');
+            const figureImage = document.querySelectorAll('figure img');
+            
+            figure.forEach((fig, idx) => {
+                fig.addEventListener('mouseover', () => {
+                    caption[idx].classList.add('expanded');
+                    fullCaption[idx].classList.add('visible');
+                    figureImage[idx].classList.add('image-filter');
+                });
+                
+                fig.addEventListener('mouseout', () => {
+                caption[idx].classList.remove('expanded');
+                fullCaption[idx].classList.remove('visible');
+                figureImage[idx].classList.remove('image-filter');
+                });
+            });
+        </script>
+    </body>
+</html>
