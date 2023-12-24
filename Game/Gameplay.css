@@ -1,0 +1,189 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.navbar { 
+    position: fixed;
+    z-index: 999;
+    margin: 0; 
+    padding: 0; 
+    list-style: none; 
+    display: flex;
+    width: 100vw;
+    text-align: center;
+    background-color: #333;
+    top: 0;
+    left: 0;
+}
+
+.navbar a { 
+    color: white;
+    text-decoration: none; 
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+    font-size: 23.5px;
+    text-align: center;
+}
+
+.navbar a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    background: black;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.navbar a:hover:after{
+    width: 100%;
+    left: 0;
+    background-color: red;
+}
+
+.dropdown{
+    overflow: hidden;
+    width: 25%;
+}
+
+.home, .country, .similar, .game{
+    font-size: 36px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 25%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.playbtn {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    top: 0%;
+    left: 0%;
+    background-image: url(https://th.bing.com/th/id/R.1b70f224a77f57e6ca77ecb25912c585?rik=%2bczjn64XvQl7fw&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fwgJuqGK.jpg&ehk=AQDA%2bJpyiNVzDL%2bsv%2bDnm83aT3uPC%2fetOOpXC2dLjTo%3d&risl=&pid=ImgRaw&r=0);
+    background-size: cover;
+}
+
+.playbtn canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    pointer-events: none;
+}
+
+.playbtn span {
+    position: relative;
+    z-index: 6;
+    font-family: "bw";
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    font-size: 3rem;
+    color: #fff;
+    pointer-events: none;
+}
+
+.playbtn a {
+    font-family: "bw";
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    font-size: 3rem;
+    color: #fff;
+    background-color: #acc7ed;
+    border-radius: 10rem;
+    padding: 1.5rem 4rem 2rem;
+    transform-style: preserve-3d;
+    transition: all 0.6s ease;
+}
+
+.playbtn a span {
+    position: relative;
+    opacity: 0;
+}
+
+.playbtn a:after {
+    content: "";
+    background: linear-gradient(56deg, #61dafb 0%, #d6cbf6 46%, #f2056f 100%);
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    bottom: -4px;
+    left: 10%;
+    opacity: 0;
+    filter: blur(15px);
+    border-radius: 10rem;
+    transform: translateZ(-1px);
+    transition: opacity 0.6s ease;
+}
+
+.playbtn a:before {
+    content: "";
+    background: linear-gradient(56deg, #61dafb 0%, #d6cbf6 46%, #f2056f 100%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 10rem;
+    transition: opacity 0.4s ease;
+}
+
+.playbtn a:hover {
+    transition: all 0.6s ease;
+    transform: translate(-50%, -50%) scale(1.35);
+    transform-origin: center;
+}
+
+.playbtn a:hover:after {
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+.playbtn a:hover:before {
+    opacity: 1;
+    transition: opacity 0.6s linear;
+}
