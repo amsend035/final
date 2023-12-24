@@ -1,0 +1,246 @@
+@import url(https://pro.fontawesome.com/releases/v5.11.2/css/all.css);
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh;
+    font-family: "Roboto", sans-serif;
+    transition: 0.25s;
+    background: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 600px;
+    max-width: 90%;
+    width: calc(100% - 50px);
+    height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+body .options {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+}
+
+body .options .option {
+    position: relative;
+    overflow: hidden;
+    min-width: 60px;
+    margin: 10px;
+    background: var(--optionBackground, var(--defaultBackground, #e6e9ed));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    cursor: pointer;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+.option.active {
+    flex-grow: 10000;
+    transform: scale(1);
+    margin: 0px;
+    border-radius: 40px;
+    background-size: auto 100%;
+}
+
+.option.active .label {
+    top: 20px;
+    left: 20px;
+}
+
+.option:not(.active) {
+    max-width: 60px;
+    flex-grow: 1;
+    border-radius: 30px;
+}
+
+.option:not(.active) .label {
+    top: 10px;
+    left: 10px;
+}
+
+.label {
+    display: flex;
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+.icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: white;
+    color: var(--defaultBackground);
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 10px;
+    font-size: 20px;
+    color: white;
+    text-shadow: -1px 1px 2px #000,
+    1px 1px 2px #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+
+.main {
+    font-weight: bolder;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.sub {
+    overflow-y: auto;
+    max-height: calc(100% - 40px);
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: transparent;
+}
+
+.notes {
+    float: right;
+    width: 30%;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.pic {
+    width: 70%;
+}
+
+.navbar { 
+    margin: 0; 
+    padding: 0;
+    list-style: none; 
+    display: flex;
+    width: 100vw;
+    text-align: center;
+    background-color: #333;
+    top: 0;
+    left: 0;
+}
+
+.navbar a { 
+    color: white;
+    text-decoration: none; 
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+    font-size: 23.5px;
+    text-align: center;   
+}
+
+.navbar a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    background: black;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.navbar a:hover:after{
+    width: 100%;
+    left: 0;
+    background-color: red;
+}
+
+.dropdown{
+    overflow: hidden;
+    width: 25%;
+}
+
+.home, .country, .similar, .game{
+    font-size: 36px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 25%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*
+@media only screen and (max-width: 600px) {
+    body {
+        flex-direction: column;
+        overflow: visible;
+    }
+    body .options {
+        flex-direction: column;
+        max-width: none;
+        width: 80%;
+        height: calc(100% - 50px);
+    }
+    .option.active {
+        max-width: none;
+    }
+}
+*/

@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+    justify-content: center;
+    align-items: center;
+}
+
+figure {
+    position: relative;
+    width: 90%;
+    height: 80%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 30px;
+}
+
+figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
+figcaption {
+    background-color: rgba(48, 48, 48, 0.3);
+    color: #ffffff;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+    margin: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: transparent;
+}
+
+.caption-title {
+    font-size: 1.2em;
+}
+
+.caption-full {
+    opacity: 0;
+    width: 100%;
+    margin-top: 10px;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.expanded {
+    height: 100%;
+    transition: 0.5s ease-in-out;
+    background-color: rgba(48, 48, 48, 0.7);
+}
+
+.visible {
+    opacity: 1;
+}
+
+.image-filter {
+    filter: blur(5px) contrast(90%);
+}
+
+.navbar { 
+    margin: 0; 
+    padding: 0; 
+    list-style: none; 
+    display: flex;
+    width: 100vw;
+    text-align: center;
+    background-color: #333;
+    top: 0;
+    left: 0;
+}
+
+.navbar a { 
+    color: white;
+    text-decoration: none; 
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+    font-size: 23.5px;
+    text-align: center;
+}
+
+.navbar a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    background: black;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.navbar a:hover:after{
+    width: 100%;
+    left: 0;
+    background-color: red;
+}
+
+.dropdown{
+    overflow: hidden;
+    width: 25%;
+}
+
+.home, .country, .similar, .game{
+    font-size: 36px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 25%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* @media screen and (max-height: 300px) {
+    .navbar {
+        margin-top: 40px;
+    }
+} */
+
+
+
